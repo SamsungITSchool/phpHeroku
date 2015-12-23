@@ -14,7 +14,6 @@ if (!isset($_GET['action'])) {
 }
 $action = $_GET['action'];
 $data = json_decode(file_get_contents("php://input"));
-echo $data->email;
 if (!isset($data->email, $data->password)) {
     echo json_encode(['error' => 1, 'message' => 'User credentials not found.']);
     exit;
