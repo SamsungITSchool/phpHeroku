@@ -13,6 +13,15 @@ application.controller('UserController', function ($scope, $http) {
             }, function (response) {
                 console.log(response);
             });
+    };
+
+    $scope.signup = function (user) {
+        $http.post('/backend/index.php?action=signup', user)
+            .then(function (response) {
+                console.log(response);
+            }, function (response) {
+                console.log(response);
+            });
     }
 });
 
