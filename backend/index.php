@@ -7,13 +7,15 @@
  */
 
 echo 'Hello world!';
-$pg_credentials = "host=ec2-107-21-223-110.compute-1.amazonaws.com port=5432 dbname=d9drs0g01eqeir user=xdmfdolmqushkf password=iBwpLgt1wIhrSZa5cPi7FIW_Op sllmode=require";
+$pg_credentials = "host=ec2-107-21-223-110.compute-1.amazonaws.com port=5432 dbname=d9drs0g01eqeir user=xdmfdolmqushkf password=iBwpLgt1wIhrSZa5cPi7FIW_Op sslmode=require";
 $db = pg_connect($pg_credentials);
 
 if (!$db) {
     echo 'Database connection error';
     exit;
 }
+
+pg_close($db);
 
 echo 'Connection is alive';
 // postgres://xdmfdolmqushkf:iBwpLgt1wIhrSZa5cPi7FIW_Op@ec2-107-21-223-110.compute-1.amazonaws.com:5432/d9drs0g01eqeir
