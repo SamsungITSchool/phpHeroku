@@ -6,14 +6,13 @@ var application = angular.module('FingerprintAuth', ['ngRoute']);
 application.controller('UserController', function ($scope, $http) {
     $scope.user = {};
     $scope.login = function (user) {
-        //$http({}).then(function (response) {
-        //
-        //}, function (response) {
-        //
-        //});
-        alert('Logged in:' + user.email);
+        $http.post('/index.php?action=login', user)
+            .then(function (response) {
+                console.log(response);
+            }, function (response) {
+                console.log(response);
+            });
     }
-
 });
 
 application.config(['$routeProvider', function ($routeProvider) {
