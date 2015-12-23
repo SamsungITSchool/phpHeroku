@@ -7,7 +7,7 @@
  */
 error_reporting(E_ALL);
 
-var_dump($_GET);
+//var_dump($_GET);
 if (!isset($_GET['action'])) {
     return json_encode(['error' => 1, 'message' => 'No parameter action.']);
 }
