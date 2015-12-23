@@ -10,12 +10,11 @@ $action = $_GET['action'];
 if (!isset($action)) {
     return json_encode(['error' => 1, 'message' => 'No parameter action.']);
 }
-
-$email = $_POST['email'];
-$password = $_POST['password'];
-if (!isset($email, $password)) {
+if (!isset($_POST['email'], $_POST['password'])) {
     return json_encode(['error' => 1, 'message' => 'User credentials not found.']);
 }
+$email = $_POST['email'];
+$password = $_POST['password'];
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     return json_encode(['error' => 1, 'message' => 'Email is invalid.']);
 }
@@ -24,8 +23,7 @@ $pg_credentials = "host=ec2-107-21-223-110.compute-1.amazonaws.com port=5432 dbn
 $db = pg_connect($pg_credentials);
 
 if (!$db) {
-    echo 'Database connection error';
-    exit;
+    return json_encode(['error' => 1, 'message' => 'Database connection error.']);
 }
 
 switch ($action) {
