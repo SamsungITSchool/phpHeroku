@@ -7,10 +7,12 @@
  */
 error_reporting(E_ALL);
 
-$action = $_GET['action'];
-if (!isset($action)) {
+var_dump($_GET);
+if (!isset($_GET['action'])) {
     return json_encode(['error' => 1, 'message' => 'No parameter action.']);
 }
+$action = $_GET['action'];
+
 if (!isset($_POST['email'], $_POST['password'])) {
     return json_encode(['error' => 1, 'message' => 'User credentials not found.']);
 }
