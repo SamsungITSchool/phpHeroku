@@ -18,8 +18,8 @@ if (!isset($data->email, $data->password)) {
     echo json_encode(['error' => 1, 'message' => 'User credentials not found.']);
     exit;
 }
-$email = $data['email'];
-$password = $data['password'];
+$email = $data->email;
+$password = $data->password;
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['error' => 1, 'message' => 'Email is invalid.']);
     exit;
