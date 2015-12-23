@@ -13,13 +13,13 @@ if (!isset($_GET['action'])) {
     exit;
 }
 $action = $_GET['action'];
-
-if (!isset($_POST['email'], $_POST['password'])) {
+$data = json_decode(file_get_contents("php://input"));
+if (!isset($data['email'], $data['password'])) {
     echo json_encode(['error' => 1, 'message' => 'User credentials not found.']);
     exit;
 }
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = $data['email'];
+$password = $data['password'];
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['error' => 1, 'message' => 'Email is invalid.']);
     exit;
