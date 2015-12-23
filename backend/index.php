@@ -6,8 +6,6 @@
  * Time: 12:09 PM
  */
 
-echo 'Hello world!';
-
 $action = $_GET['action'];
 if (!isset($action)) {
     return json_encode(['error' => 1, 'message' => 'No parameter action.']);
