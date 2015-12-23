@@ -5,6 +5,7 @@
  * Date: 12/23/15
  * Time: 12:09 PM
  */
+error_reporting(E_ALL);
 
 $action = $_GET['action'];
 if (!isset($action)) {
