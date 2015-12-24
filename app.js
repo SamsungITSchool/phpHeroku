@@ -40,6 +40,9 @@ application.controller('userController', function ($scope, $http, $timeout, $win
                 console.log(response);
             });
     }
+    $scope.loadUser = function() {
+        return userService.getUser();
+    }
 });
 
 application.config(['$routeProvider', function ($routeProvider) {
