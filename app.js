@@ -3,7 +3,7 @@
  */
 
 var application = angular.module('FingerprintAuth', ['ngRoute']);
-application.controller('userController', function ($scope, $http, $timeout, $window) {
+application.controller('userController', function ($scope, $http, $timeout, $location) {
     $scope.user = {};
     $scope.isShowAlert = false;
     $scope.message = '';
@@ -18,7 +18,8 @@ application.controller('userController', function ($scope, $http, $timeout, $win
                         $scope.isShowAlert = false;
                     }, 3000);
                 } else {
-                    $window.location.href = 'dashboard';
+                    $scope.user = response.data.data;
+                    $location.url('#/dashboard');
                 }
                 console.log(response);
             }, function (response) {
