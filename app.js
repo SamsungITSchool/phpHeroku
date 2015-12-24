@@ -3,7 +3,7 @@
  */
 
 var application = angular.module('FingerprintAuth', ['ngRoute']);
-application.controller('userController', function ($scope, $http, $timeout, $window) {
+application.controller('userController', function ($scope, $http, $timeout, $window, userService) {
     $scope.user = {};
     $scope.isShowAlert = false;
     $scope.message = '';
@@ -18,6 +18,7 @@ application.controller('userController', function ($scope, $http, $timeout, $win
                     }, 3000);
                 } else {
                     $scope.user = response.data.data;
+                    userService.saveUser($scope.user);
                     $window.location.href = '#/dashboard';
                     console.log($scope.user);
                 }
@@ -67,15 +68,18 @@ application.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-application.factory('UserService', function () {
+application.factory('userService', function () {
     var factory = {};
-    factory.login = function (user) {
+    var user = {};
+    factory.saveUser = function (userToSave) {
+        user = userToSave;
+        console.log('User info saved');
+    };
+    factory.getUser = function () {
+        console.log('User retrieved');
         return user;
     };
 
-    factory.signup = function (user) {
-
-    };
     return factory;
 
 });
