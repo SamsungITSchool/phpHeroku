@@ -35,12 +35,24 @@ application.controller('userController', function ($scope, $http, $timeout, $win
     $scope.signup = function (user) {
         $http.post('/backend/index.php?action=signup', user)
             .then(function (response) {
-                console.log(response);
+                if (response.data.error !== 0) {
+                    $scope.isShowAlert = true;
+                    $scope.message = response.data.message;
+                    $timeout(function () {
+                        $scope.isShowAlert = false;
+                    }, 3000);
+                } else {
+                    $scope.isShowAlert = true;
+                    $scope.message = response.data.message;
+                    $timeout(function () {
+                        $scope.isShowAlert = false;
+                    }, 3000);
+                }
             }, function (response) {
                 console.log(response);
             });
     }
-    $scope.loadUser = function() {
+    $scope.loadUser = function () {
         return userService.getUser();
     }
 });
