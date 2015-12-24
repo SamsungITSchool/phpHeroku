@@ -11,22 +11,20 @@ application.controller('userController', function ($scope, $http, $timeout) {
         console.log('Eyy');
         $http.post('/backend/index.php?action=login', user)
             .then(function (response) {
-                if (response.data.error != 0) {
+                if (response.data.error !== 0) {
                     $scope.isShowAlert = true;
                     $scope.message = response.data.message;
-                    $timeout(function(){
+                    $timeout(function () {
                         $scope.isShowAlert = false;
                     }, 3000);
                 }
                 console.log(response);
             }, function (response) {
                 $scope.isShowAlert = true;
-                $timeout(function(){
+                $timeout(function () {
                     $scope.isShowAlert = false;
                 }, 3000);
-                if (response.error != 0) {
-                    $scope.message = 'An error has occurred when trying to login. Please try again later.';
-                }
+                $scope.message = 'An error has occurred when trying to login. Please try again later.';
                 console.log(response);
             });
     };
