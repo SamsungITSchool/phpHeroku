@@ -55,6 +55,7 @@ application.controller('userController', function ($scope, $http, $timeout, $win
                     $timeout(function () {
                         $scope.isShowAlert = false;
                     }, 3000);
+                    $window.location.href = '#/login';
                 }
             }, function (response) {
                 console.log(response);
