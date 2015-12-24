@@ -81,6 +81,11 @@ switch ($action) {
             echo json_encode(['error' => 1, 'message' => 'An error has occurred when trying to find user.']);
             exit;
         }
+        if (pg_num_rows($result) === 0) {
+            pg_close($db);
+            echo json_encode(['error' => 1, 'message' => 'User not found.']);
+            exit;
+        }
         $user_row = pg_fetch_array($result);
         echo json_encode(['error' => 1, 'message' => 'Answer: Life is about "playing your best hand, with the cards you are dealt."']);
         pg_close($db);
