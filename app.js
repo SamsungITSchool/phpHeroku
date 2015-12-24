@@ -3,14 +3,30 @@
  */
 
 var application = angular.module('FingerprintAuth', ['ngRoute']);
-application.controller('UserController', function ($scope, $http) {
+application.controller('userController', function ($scope, $http, $timeout) {
     $scope.user = {};
+    $scope.isShowAlert = false;
+    $scope.message = '';
     $scope.login = function (user) {
         console.log('Eyy');
         $http.post('/backend/index.php?action=login', user)
             .then(function (response) {
+                if (response.error != 0) {
+                    $scope.isShowAlert = true;
+                    $scope.message = response.message;
+                    $timeout(function(){
+                        $scope.isShowAlert = false;
+                    }, 3000);
+                }
                 console.log(response);
             }, function (response) {
+                $scope.isShowAlert = true;
+                $timeout(function(){
+                    $scope.isShowAlert = false;
+                }, 3000);
+                if (response.error != 0) {
+                    $scope.message = 'An error has occurred when trying to login. Please try again later.';
+                }
                 console.log(response);
             });
     };
@@ -35,11 +51,11 @@ application.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/login', {
             templateUrl: 'views/login.view.html',
-            controller: 'UserController'
+            controller: 'userController'
         })
         .when('/signup', {
             templateUrl: 'views/signup.view.html',
-            controller: 'UserController'
+            controller: 'userController'
         })
         .otherwise({
             redirectTo: '/login'

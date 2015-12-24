@@ -84,6 +84,3 @@ switch ($action) {
         pg_close($db);
         echo json_encode(['error' => 1, 'message' => 'Unknown action.']);
 }
-//pg_close($db);
-//echo 'Connection is alive';
-// postgres://xdmfdolmqushkf:iBwpLgt1wIhrSZa5cPi7FIW_Op@ec2-107-21-223-110.compute-1.amazonaws.com:5432/d9drs0g01eqeir
