@@ -4,15 +4,15 @@
     <form>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password" required>
         </div>
         <div class="form-group">
             <label for="passwordAgain">Re-enter password</label>
-            <input type="password" class="form-control" id="passwordAgain" placeholder="Password">
+            <input type="password" class="form-control" id="passwordAgain" placeholder="Password" ng-model="user.passwordAgain" required>
         </div>
 
         <button type="submit" class="btn btn-default" ng-click="signup(user)">Sign Up</button>

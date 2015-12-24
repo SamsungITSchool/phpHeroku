@@ -33,6 +33,14 @@ application.controller('userController', function ($scope, $http, $timeout, $win
     };
 
     $scope.signup = function (user) {
+        if ($scope.user.password !== $scope.user.passwordAgain) {
+            $scope.isShowAlert = true;
+            $scope.message = 'Entered passwords don\'t match.';
+            $timeout(function () {
+                $scope.isShowAlert = false;
+            }, 3000);
+            return;
+        }
         $http.post('/backend/index.php?action=signup', user)
             .then(function (response) {
                 if (response.data.error !== 0) {
@@ -51,9 +59,22 @@ application.controller('userController', function ($scope, $http, $timeout, $win
             }, function (response) {
                 console.log(response);
             });
-    }
+    };
     $scope.loadUser = function () {
         return userService.getUser();
+    };
+
+    $scope.getAnswer = function () {
+        var user = userService.getUser();
+        if (!user) {
+            console.log('User not found');
+            return;
+        }
+        $http.get('/backend/index.php?action=getAnswer&token=' + user.token).then(function (response) {
+            console.log(response);
+        }, function (response) {
+            console.log(response);
+        });
     }
 });
 
