@@ -75,7 +75,7 @@ application.controller('userController', function ($scope, $http, $timeout, $win
             $scope.isShowAlert = true;
             $timeout(function () {
                 $scope.isShowAlert = false;
-            }, 3000);
+            }, 1000);
         }, function (response) {
             $scope.message = 'An error has occurred.';
             $timeout(function () {
