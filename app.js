@@ -71,9 +71,16 @@ application.controller('userController', function ($scope, $http, $timeout, $win
             return;
         }
         $http.get('/backend/index.php?action=getAnswer&token=' + user.token).then(function (response) {
-            console.log(response);
+            $scope.message = response.data.message;
+            $scope.isShowAlert = true;
+            $timeout(function () {
+                $scope.isShowAlert = false;
+            }, 3000);
         }, function (response) {
-            console.log(response);
+            $scope.message = 'An error has occurred.';
+            $timeout(function () {
+                $scope.isShowAlert = false;
+            }, 3000);
         });
     }
 });
