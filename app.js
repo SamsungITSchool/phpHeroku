@@ -11,9 +11,9 @@ application.controller('userController', function ($scope, $http, $timeout) {
         console.log('Eyy');
         $http.post('/backend/index.php?action=login', user)
             .then(function (response) {
-                if (response.error != 0) {
+                if (response.data.error != 0) {
                     $scope.isShowAlert = true;
-                    $scope.message = response.message;
+                    $scope.message = response.data.message;
                     $timeout(function(){
                         $scope.isShowAlert = false;
                     }, 3000);
