@@ -61,7 +61,11 @@ application.controller('userController', function ($scope, $http, $timeout, $win
             });
     };
     $scope.loadUser = function () {
-        return userService.getUser();
+        var user = userService.getUser();
+        if (!user || !user.email) {
+            user.email = 'Stranger';
+        }
+        return user;
     };
 
     $scope.getAnswer = function () {
@@ -75,7 +79,7 @@ application.controller('userController', function ($scope, $http, $timeout, $win
             $scope.isShowAlert = true;
             $timeout(function () {
                 $scope.isShowAlert = false;
-            }, 1000);
+            }, 10000);
         }, function (response) {
             $scope.message = 'An error has occurred.';
             $timeout(function () {

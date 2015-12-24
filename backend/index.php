@@ -83,7 +83,7 @@ switch ($action) {
         }
         if (pg_num_rows($result) === 0) {
             pg_close($db);
-            echo json_encode(['error' => 1, 'message' => 'User not found.']);
+            echo json_encode(['error' => 1, 'message' => 'Only a believer pass. You will suffer the punishment of God, stranger...']);
             exit;
         }
         $user_row = pg_fetch_array($result);
